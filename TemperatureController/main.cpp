@@ -51,28 +51,6 @@ typedef int BOOL;
 
 #define MAX 256
 
-enum {
-    MENU_RECTANGLE = 1, // 1
-    MENU_BARTLETT,      // 2
-    MENU_HANNING,       // 3
-    MENU_HAMMING,       // 4
-    MENU_BLACKMAN,      // 5
-    MENU_FILTER,        // f
-    MENU_LOWPASS,       // l
-    MENU_HIGHPASS,      // h
-    MENU_BANDPASS,      // b
-    MENU_BANDSTOP,      // p
-    MENU_INPUT,         // i
-    MENU_SINE,          // s
-    MENU_SQUARE,        // q
-    MENU_NOISE,         // n
-    MENU_NOISYSINE,     // ns
-    MENU_NOISYSQUARE,   // nq
-    MENU_OUTPUT,        // o
-    MENU_EXIT,          // Esc
-    MENU_EMPTY
-};
-
 static BOOL g_bButton1Down = FALSE;
 static BOOL g_bButtonLEFTDown = FALSE;
 static BOOL g_bButtonRIGHTDown = FALSE;
@@ -253,13 +231,13 @@ void initSystemDisplayScreen(void)
     drawBannerString(XcordTransformBGIToGLUT(214+30,g_Width),YcordTransformBGIToGLUT(20,g_Height),tc_string);
     snprintf(tc_string, 100, "Based On");
     drawMidBannerString(XcordTransformBGIToGLUT(214+160,g_Width),YcordTransformBGIToGLUT(40,g_Height),tc_string);
-    snprintf(tc_string, 100, "Neural Network : 3-layer Back Propagation Supervised Learning");
+    snprintf(tc_string, 100, "Neural Network : 3-layer Back Propagation Supervised Training");
     drawMidBannerString(XcordTransformBGIToGLUT(214+20,g_Width),YcordTransformBGIToGLUT(60,g_Height),tc_string);
     //----------------------
     
     //---- Clear out the MODE Area -----
     glColor3f (0.0, 0.0, 0.0);
-    glRecti(XcordTransformBGIToGLUT(10,g_Width),YcordTransformBGIToGLUT(10,g_Height),XcordTransformBGIToGLUT(214-5,g_Width),YcordTransformBGIToGLUT(70-5,g_Height));
+    glRecti(XcordTransformBGIToGLUT(5,g_Width),YcordTransformBGIToGLUT(5,g_Height),XcordTransformBGIToGLUT(214-5,g_Width),YcordTransformBGIToGLUT(70-5,g_Height));
     
     glColor3f (1.0, 1.0, 0.5);
     glLineWidth(2.0);
@@ -271,14 +249,17 @@ void initSystemDisplayScreen(void)
     glEnd();
     glColor3f (1.0, 1.0, 1.0);
     snprintf(tc_string, 100, "Press t to Train");
-    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(25,g_Height),tc_string);
+    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(15,g_Height),tc_string);
     snprintf(tc_string, 100, "Press s to Simulate");
-    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(40,g_Height),tc_string);
+    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(30,g_Height),tc_string);
     snprintf(tc_string, 100, "Press r to Replay");
-    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(55,g_Height),tc_string);
+    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(45,g_Height),tc_string);
     //----------------------
     
     //-----------MAIN Window --------
+    //---- Clear out the area-----
+    glColor3f (0.0, 0.0, 0.0);
+    glRecti(XcordTransformBGIToGLUT(5,g_Width),YcordTransformBGIToGLUT(70+5,g_Height),XcordTransformBGIToGLUT(425-5,g_Width),YcordTransformBGIToGLUT(70+15,g_Height));
     glColor3f (1.0, 1.0, 0.5);
     glLineWidth(2.0);
     glBegin (GL_LINE_LOOP);
@@ -379,9 +360,9 @@ void displayError(void)
     
     //---- Clear out the area-----
     glColor3f (0.0, 0.0, 0.0);
-    glRecti(XcordTransformBGIToGLUT(125,g_Width),YcordTransformBGIToGLUT(70+15,g_Height),XcordTransformBGIToGLUT(125+200,g_Width),YcordTransformBGIToGLUT(70+5,g_Height));
+    glRecti(XcordTransformBGIToGLUT(5,g_Width),YcordTransformBGIToGLUT(70+5,g_Height),XcordTransformBGIToGLUT(425-5,g_Width),YcordTransformBGIToGLUT(70+15,g_Height));
     glColor3f (1.0, 1.0, 1.0);
-    snprintf(plot_string, 100, "Error : %.3f",error);
+    snprintf(plot_string, 100, "Training Error : %.3f",error);
     drawString(XcordTransformBGIToGLUT(125,g_Width),YcordTransformBGIToGLUT(15+70,g_Height),plot_string);
     
     glColor3f (1.0, 1.0, 1.0);
@@ -395,11 +376,18 @@ void displayError(void)
     glEnd();
     //---- Clear out the area-----
     glColor3f (0.0, 0.0, 0.0);
-    glRecti(XcordTransformBGIToGLUT(10,g_Width),YcordTransformBGIToGLUT(10,g_Height),XcordTransformBGIToGLUT(214-5,g_Width),YcordTransformBGIToGLUT(70-5,g_Height));
+    glRecti(XcordTransformBGIToGLUT(5,g_Width),YcordTransformBGIToGLUT(5,g_Height),XcordTransformBGIToGLUT(214-5,g_Width),YcordTransformBGIToGLUT(70-5,g_Height));
     //----------------------------
+    glColor3f (1.0, 1.0, 0.0);
+    snprintf(plot_string, 100, "Press +/- to up/dn Eta");
+    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(15,g_Height),plot_string);
+    snprintf(plot_string, 100, "Press m/n to up/dn Alpha");
+    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(30,g_Height),plot_string);
+    snprintf(plot_string, 100, "Press p/e to Pause/End Training");
+    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(45,g_Height),plot_string);
     glColor3f (0.0, 1.0, 0.0);
     snprintf(plot_string, 100, "Training In Progress");
-    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(45,g_Height),plot_string);
+    drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(60,g_Height),plot_string);
     //--------------------
 }
 
@@ -580,7 +568,7 @@ void TrainNeuralNetwork(void)
 {
     float err=0.0;
     float ct;
-    int i,j,k,l,m,ch;
+    int i,j,k,l;
     
     error = 0;
     
@@ -669,7 +657,7 @@ void displayTemperature(void)
     
     //---- Clear out the area-----
     glColor3f (0.0, 0.0, 0.0);
-    glRecti(XcordTransformBGIToGLUT(125,g_Width),YcordTransformBGIToGLUT(70+15,g_Height),XcordTransformBGIToGLUT(125+200,g_Width),YcordTransformBGIToGLUT(70+5,g_Height));
+    glRecti(XcordTransformBGIToGLUT(5,g_Width),YcordTransformBGIToGLUT(70+5,g_Height),XcordTransformBGIToGLUT(425-5,g_Width),YcordTransformBGIToGLUT(70+15,g_Height));
     glColor3f (1.0, 1.0, 1.0);
     snprintf(plot_string, 100, "Measured Temperature  : %d 'C",(int)temp);
     drawString(XcordTransformBGIToGLUT(125,g_Width),YcordTransformBGIToGLUT(15+70,g_Height),plot_string);
@@ -688,23 +676,28 @@ void displayTemperature(void)
     
     //---- Clear out the area-----
     glColor3f (0.0, 0.0, 0.0);
-    glRecti(XcordTransformBGIToGLUT(10,g_Width),YcordTransformBGIToGLUT(10,g_Height),XcordTransformBGIToGLUT(214-5,g_Width),YcordTransformBGIToGLUT(70-5,g_Height));
-    glColor3f (1.0, 1.0, 1.0);
+    glRecti(XcordTransformBGIToGLUT(5,g_Width),YcordTransformBGIToGLUT(5,g_Height),XcordTransformBGIToGLUT(214-5,g_Width),YcordTransformBGIToGLUT(70-5,g_Height));
     
     if(g_bSimu)
     {
+        glColor3f (1.0, 1.0, 1.0);
         snprintf(plot_string, 100, "Set Temperature            : %d 'C",(int)setpoint);
+        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(15,g_Height),plot_string);
+        glColor3f (1.0, 1.0, 0.0);
+        snprintf(plot_string, 100, "Press +/- to up/dn Set Temp");
         drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(30,g_Height),plot_string);
+        snprintf(plot_string, 100, "Press p/e to Pause/End Simu");
+        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(45,g_Height),plot_string);
         glColor3f (0.0, 1.0, 0.0);
         snprintf(plot_string, 100, "Simulation In Progress");
-        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(45,g_Height),plot_string);
+        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(60,g_Height),plot_string);
         
     }
     if(g_bReplay)
     {
         glColor3f (0.0, 1.0, 0.0);
         snprintf(plot_string, 100, "Replay In Progress");
-        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(45,g_Height),plot_string);
+        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(60,g_Height),plot_string);
     }
 }
 
@@ -909,7 +902,7 @@ void trainSystem(void)
         
         glColor3f(1.0,0.0,0.0);
         snprintf(plot_string, 100, "*** Training Ended ***\n");
-        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(65,g_Height),plot_string);
+        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(60,g_Height),plot_string);
         glFlush();
     }
     else
@@ -936,7 +929,7 @@ void trainSystem(void)
             
             glColor3f(0.0,1.0,1.0);
             snprintf(plot_string, 100, "*** PAUSED ***\n");
-            drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(65,g_Height),plot_string);
+            drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(15+70,g_Height),plot_string);
             glFlush();
         }
     }
@@ -952,7 +945,7 @@ void simulateSystem(void)
     {
         glColor3f(1.0,0.0,0.0);
         snprintf(plot_string, 100, "*** Simulation Ended ***\n");
-        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(65,g_Height),plot_string);
+        drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(60,g_Height),plot_string);
         glFlush();
     }
     else
@@ -1012,7 +1005,7 @@ void simulateSystem(void)
             
             glColor3f(0.0,1.0,1.0);
             snprintf(plot_string, 100, "*** PAUSED ***\n");
-            drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(65,g_Height),plot_string);
+            drawString(XcordTransformBGIToGLUT(20,g_Width),YcordTransformBGIToGLUT(15+70,g_Height),plot_string);
             glFlush();
         }
     }
