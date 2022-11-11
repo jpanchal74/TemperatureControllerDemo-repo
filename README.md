@@ -3,8 +3,8 @@
 
 Three modes (Left Top Corner):
 1. Training of NN (Press 't')
-2. Simulating performance of trained NN (Press 's)
-3. Real-world (Filed) Trial. Replay the field performance (Press 'r')
+2. Simulating performance of trained NN (Press 's')
+3. Real-world (Field) Trial. Replay the field performance (Press 'r')
 
 <img width="641" alt="image" src="https://user-images.githubusercontent.com/89759466/201390798-188a79be-206a-45f8-b80e-40df98c82dd9.png">
 
