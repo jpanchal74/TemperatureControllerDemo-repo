@@ -84,7 +84,7 @@ static BOOL g_bReplay = FALSE;
 static int g_yClick = 0;
 
 static int g_Width = 640;                          // Initial window width
-static int g_Height = 480;
+static int g_Height = 360;
 
 int sp;
 int skip;
@@ -1221,6 +1221,8 @@ void Keyboard(unsigned char key, int x, int y)
             {
                 new_simu = TRUE;
                 simu_end = FALSE;
+                temp=ROOM_TEMPERATURE_C;
+                temp_prev_measured=ROOM_TEMPERATURE_C;
                 mainWindowX = 1;
                 smallWindowX = 1;
                 displaySystem();
@@ -1229,6 +1231,8 @@ void Keyboard(unsigned char key, int x, int y)
             if(!g_bSimu)
             {
                 g_bSimu = TRUE;
+                temp=ROOM_TEMPERATURE_C;
+                temp_prev_measured=ROOM_TEMPERATURE_C;
                 displaySystem();
                 glutIdleFunc(simulateSystem);
             }
