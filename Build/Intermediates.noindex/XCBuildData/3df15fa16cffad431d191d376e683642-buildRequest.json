@@ -1,0 +1,57 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "9357ed33ad4a95331792e815fdb9c5711bf0a24856e80c21e2ffbf455cca0555"
+    }
+  ],
+  "containerPath" : "/Users/jpanchal74/Projects/TemperatureControllerDemo-repo/TemperatureController.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx13.0",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/jpanchal74/Projects/TemperatureControllerDemo-repo/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/jpanchal74/Projects/TemperatureControllerDemo-repo/Build/Products",
+      "derivedDataPath" : "/Users/jpanchal74/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/jpanchal74/Library/Developer/Xcode/DerivedData/TemperatureController-gqnuuwkdhcdpthfzbuqilxbthctr/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/jpanchal74/Library/Developer/Xcode/DerivedData/TemperatureController-gqnuuwkdhcdpthfzbuqilxbthctr/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/jpanchal74/Projects/TemperatureControllerDemo-repo/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
